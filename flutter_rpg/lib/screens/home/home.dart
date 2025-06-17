@@ -19,9 +19,11 @@ class _HomeState extends State<Home> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text('Your Characters'),
+            const Text('Character List'),
+            Text('Character list', style: Theme.of(context).textTheme.titleMedium),
+            Text('Character list', style: Theme.of(context).textTheme.headlineMedium),
             const SizedBox(height: 16),
-            ElevatedButton(
+            FilledButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/create');
               },
