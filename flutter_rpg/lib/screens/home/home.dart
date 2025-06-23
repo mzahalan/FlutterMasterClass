@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 
 class Home extends StatefulWidget {
@@ -24,18 +25,11 @@ class _HomeState extends State<Home> {
             const StyledHeading('Character list'),
             const StyledTitle('Character list'),
             const SizedBox(height: 16),
-            FilledButton(
+            StyledButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/create');
               },
-              child: const Text('Create Character'),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/character');
-              },
-              child: const Text('View Character'),
+              child: const StyledHeading('Create Character'),
             ),
           ],
         ),
