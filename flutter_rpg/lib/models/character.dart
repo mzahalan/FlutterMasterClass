@@ -1,3 +1,4 @@
+import 'package:flutter_rpg/models/skills.dart';
 import 'package:flutter_rpg/models/stats.dart';
 import 'package:flutter_rpg/models/vocation.dart';
 
@@ -11,6 +12,7 @@ class Character with Stats {
   });
   
   final Vocation vocation;
+  final Set<Skill> skills = {};
   final String name;
   final String slogal;
   final String id;
@@ -20,5 +22,10 @@ class Character with Stats {
 
   void toggleIsFav() {
     _isFav = !_isFav;
+  }
+
+  void updateSkill(Skill skill) {
+    skills.clear();
+    skills.add(skill);
   }
 }
