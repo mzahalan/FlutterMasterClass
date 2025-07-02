@@ -48,4 +48,35 @@ ThemeData primaryTheme = ThemeData(
     shadowColor: Colors.transparent,
     margin: const EdgeInsets.only(bottom: 16)
   ),
+
+  //Input Decoration Theme
+  inputDecorationTheme: InputDecorationTheme(
+    filled: true,
+    fillColor: AppColors.secondaryColor.withAlpha(128),
+    border: InputBorder.none,
+    labelStyle: TextStyle(color: AppColors.textColor),
+    prefixIconColor: AppColors.textColor,
+    contentPadding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    hintStyle: TextStyle(
+      color: AppColors.textColor.withValues(alpha: 0.5),
+      fontSize: 16,
+      letterSpacing: 1,
+    ),
+  ),
+
+  //Button Theme
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: AppColors.primaryColor,
+      foregroundColor: AppColors.textColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      textStyle: const TextStyle(
+        fontSize: 16,
+        letterSpacing: 1,
+      ),
+    ),
+  )
 );
