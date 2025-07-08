@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,21 @@ class _CreateState extends State<Create> {
     _nameController.dispose();
     _sloganController.dispose();
     super.dispose();
+  }
+
+  // submit handler
+  void handleSubmit() {
+    if(_nameController.text.trim().isEmpty) {
+      print('Name must not be empty');
+      return;
+    }
+    if(_sloganController.text.trim().isEmpty) {
+      print('Slogan must not be empty');
+      return;
+    }
+
+    print('Name: ${_nameController.text}');
+    print('Slogan: ${_sloganController.text}');
   }
 
   @override
@@ -60,7 +76,9 @@ class _CreateState extends State<Create> {
                 prefixIcon: Icon(Icons.chat),
                 label: StyledText('Character Slogan')
               ),
-            )
+            ),
+            const SizedBox(height: 30),
+            Center(child: StyledButton(onPressed: handleSubmit, child: const StyledHeading('Create Character')),)
           ],
         ),
       ),
