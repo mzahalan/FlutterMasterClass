@@ -102,27 +102,42 @@ class _CreateState extends State<Create> {
                 child: StyledText('This determines your available skills.'),
               ),
           
-          /*
+          
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     for(var vocation in Vocation.values) 
-                      Padding( 
-                        padding: const EdgeInsets.all(8),
-                        child: Image.asset('assets/img/vocations/${vocation.image}', height: 180, colorBlendMode: BlendMode.color,)
-                      ),
+                      GestureDetector(
+                        onTap: () => handleVocationSelect(vocation),
+                        child:  Padding( 
+                          padding: const EdgeInsets.all(8),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(color: !(selectedVocation == vocation) ? Colors.black.withAlpha(200) : AppColors.primaryColor, width: 2),
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Image.asset('assets/img/vocations/${vocation.image}', 
+                              height: 180, 
+                              color: !(selectedVocation == vocation) ? Colors.black.withAlpha(200) : Colors.transparent, 
+                              colorBlendMode: BlendMode.color,
+                            )
+                          ) 
+                        ),
+                      )
                   ],
                 ),
               ),
-              */
+              
+
+              /*
               for(var vocation in Vocation.values) 
                 VocationCard(
                   vocation: vocation, 
                   onTap: handleVocationSelect,
                   selected: vocation == selectedVocation
                 ),
-              
+              */
 
           
               // Submit!!!
