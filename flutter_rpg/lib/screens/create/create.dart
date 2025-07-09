@@ -17,11 +17,19 @@ class _CreateState extends State<Create> {
   final _nameController = TextEditingController();
   final _sloganController = TextEditingController();
 
+  Vocation selectedVocation = Vocation.values.first;
+
   @override
   void dispose() {
     _nameController.dispose();
     _sloganController.dispose();
     super.dispose();
+  }
+
+  void handleVocationSelect(Vocation vocation) {
+    setState(() {
+      selectedVocation = vocation;
+    });
   }
 
   // submit handler
@@ -37,6 +45,7 @@ class _CreateState extends State<Create> {
 
     print('Name: ${_nameController.text}');
     print('Slogan: ${_sloganController.text}');
+    print('Vocation: ${selectedVocation.name}');
   }
 
   @override
@@ -108,7 +117,11 @@ class _CreateState extends State<Create> {
               ),
               */
               for(var vocation in Vocation.values) 
-                VocationCard(vocation: vocation,),
+                VocationCard(
+                  vocation: vocation, 
+                  onTap: handleVocationSelect,
+                  selected: vocation == selectedVocation
+                ),
               
 
           
