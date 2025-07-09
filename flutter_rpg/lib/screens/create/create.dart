@@ -57,6 +57,8 @@ class _CreateState extends State<Create> {
       slogan: _sloganController.text.trim(),
       vocation: selectedVocation
     ));
+    
+    Navigator.pushNamed(context, '/characters');
   }
 
   @override
