@@ -6,7 +6,7 @@ import 'package:flutter_rpg/theme.dart';
 void main() {
   runApp(MaterialApp(
     theme: primaryTheme,
-    initialRoute: '/create',
+    initialRoute: '/characters',
     routes: {
       '/characters': (context) => const Home(),
       '/create': (context) => const Create(),

@@ -78,5 +78,12 @@ ThemeData primaryTheme = ThemeData(
         letterSpacing: 1,
       ),
     ),
-  )
+  ),
+
+  //Dialog Theme
+  dialogTheme: DialogThemeData(
+    backgroundColor: AppColors.secondaryAccent,
+    surfaceTintColor: Colors.transparent,
+  ),
+
 );
