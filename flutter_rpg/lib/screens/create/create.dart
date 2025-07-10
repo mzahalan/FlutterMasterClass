@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
-import 'package:flutter_rpg/screens/create/vocation_card.dart';
+import 'package:flutter_rpg/screens/create/divider.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
@@ -73,16 +73,7 @@ class _CreateState extends State<Create> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Center(
-                child: Icon(Icons.code, color: AppColors.primaryColor),
-              ),
-              const Center(
-                child: StyledHeading('Welcome New Player'),
-              ),
-              const Center(
-                child: StyledText('Create a name & slogan for your character.'),
-              ),
-              const SizedBox(height: 30,),
+              const SectionDivider(heading: 'Welcome New Player', text: 'Create a name & slogan for your character.'),
               TextField(
                 controller: _nameController,
                 cursorColor: AppColors.textColor,
@@ -102,19 +93,10 @@ class _CreateState extends State<Create> {
                   label: StyledText('Character Slogan')
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 15),
           
               // Select Vocation Title
-              Center(
-                child: Icon(Icons.code, color: AppColors.primaryColor),
-              ),
-              const Center(
-                child: StyledHeading('Choose a vocation'),
-              ),
-              const Center(
-                child: StyledText('This determines your available skills.'),
-              ),
-          
+              const SectionDivider(heading: 'Choose a vocation', text: 'This determines your available skills.'),
           
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -141,27 +123,9 @@ class _CreateState extends State<Create> {
                   ],
                 ),
               ),
-              
-
-              /*
-              for(var vocation in Vocation.values) 
-                VocationCard(
-                  vocation: vocation, 
-                  onTap: handleVocationSelect,
-                  selected: vocation == selectedVocation
-                ),
-              */
 
               // Good Luck Message
-              Center(
-                child: Icon(Icons.code, color: AppColors.primaryColor),
-              ),
-              const Center(
-                child: StyledHeading('Good Luck'),
-              ),
-              const Center(
-                child: StyledText('And enjoy the journey...'),
-              ),
+              const SectionDivider(heading: 'Good Luck', text: 'And enjoy the journey...'),
           
               // Submit!!!
               Center(child: StyledButton(onPressed: handleSubmit, child: const StyledHeading('Create Character')),)
