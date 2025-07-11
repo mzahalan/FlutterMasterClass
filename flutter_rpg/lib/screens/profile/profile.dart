@@ -31,14 +31,40 @@ class Profile extends StatelessWidget {
                       StyledText(character.vocation.description)
                     ]
                   ),
-                )
+                ),
               ]
             ),
           ),
-          // weapon and ability
+          const SizedBox(height: 20),
+          Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              color: AppColors.secondaryColor.withAlpha(128),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const StyledHeading('Slogan'),
+                  StyledText(character.slogan),
+                  const SizedBox(height: 10,),
+
+
+                  const StyledHeading('Weapon'),
+                  StyledText(character.vocation.weapon),
+                  const SizedBox(height: 10,),
+
+
+                  const StyledHeading('Ability'),
+                  StyledText(character.vocation.ability),
+                  const SizedBox(height: 10,),
+              ],)
+            )),
+
           // stats & skills
           // save button
-          Text('This is the Profile page')],
+        ]
       ),
     );
   }
