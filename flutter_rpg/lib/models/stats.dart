@@ -17,10 +17,10 @@ mixin Stats {
   };
 
   List<Map<String, String>> get statsAsList => [
-    {'title:': 'health', 'value': _health.toString()},
-    {'title:': 'attack', 'value': _attack.toString()},
-    {'title:': 'defense', 'value': _defense.toString()},
-    {'title:': 'skill', 'value': _skill.toString()},
+    {'title': 'health', 'value': _health.toString()},
+    {'title': 'attack', 'value': _attack.toString()},
+    {'title': 'defense', 'value': _defense.toString()},
+    {'title': 'skill', 'value': _skill.toString()},
   ];
   
   void increaseStat(String stat) {
