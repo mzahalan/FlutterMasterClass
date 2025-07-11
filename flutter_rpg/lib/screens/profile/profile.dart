@@ -23,12 +23,14 @@ class Profile extends StatelessWidget {
               children: [
                 Image.asset('assets/img/vocations/${character.vocation.image}', width: 140, height: 140),
                 const SizedBox(width: 20,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    StyledHeading(character.vocation.title),
-                    StyledText(character.vocation.description)
-                  ]
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      StyledHeading(character.vocation.title),
+                      StyledText(character.vocation.description)
+                    ]
+                  ),
                 )
               ]
             ),
