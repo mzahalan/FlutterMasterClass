@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/character.dart';
 import 'package:flutter_rpg/models/vocation.dart';
 import 'package:flutter_rpg/screens/create/divider.dart';
+import 'package:flutter_rpg/services/character_store.dart';
 import 'package:flutter_rpg/shared/styled_button.dart';
 import 'package:flutter_rpg/shared/styled_text.dart';
 import 'package:flutter_rpg/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 var uuid = const Uuid();
@@ -71,11 +73,8 @@ class _CreateState extends State<Create> {
       return;
     }
 
-    print('Name: ${_nameController.text}');
-    print('Slogan: ${_sloganController.text}');
-    print('Vocation: ${selectedVocation.name}');
-
-    allCharacters.add(Character(
+    // Add character to the store
+    Provider.of<CharacterStore>(context, listen: false).addCharacter(Character(
       id: uuid.v4(),
       name: _nameController.text.trim(),
       slogan: _sloganController.text.trim(),
@@ -152,7 +151,14 @@ class _CreateState extends State<Create> {
               const SectionDivider(heading: 'Good Luck', text: 'And enjoy the journey...'),
           
               // Submit!!!
-              Center(child: StyledButton(onPressed: handleSubmit, child: const StyledHeading('Create Character')),)
+              Consumer<CharacterStore>(
+                builder: (context, characterStore, child) {
+                  return Center(child: StyledButton(
+                    onPressed: handleSubmit, 
+                    child: const StyledHeading('Create Character')
+                  ));
+                }
+              )
             ],
           ),
         ),
