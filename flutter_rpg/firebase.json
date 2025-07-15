@@ -1,0 +1,30 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "lost-mud",
+                    "appId": "1:497490603741:android:aa8a14e32bf468f1667534",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "lost-mud",
+                    "appId": "1:497490603741:ios:8bbdb3605ea8c230667534",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "lost-mud",
+                    "configurations": {
+                        "android": "1:497490603741:android:aa8a14e32bf468f1667534",
+                        "ios": "1:497490603741:ios:8bbdb3605ea8c230667534"
+                    }
+                }
+            }
+        }
+    }
+}

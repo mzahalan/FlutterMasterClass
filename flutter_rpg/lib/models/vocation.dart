@@ -1,3 +1,4 @@
+
 enum Vocation {
   raider(
     title: 'Raider',
