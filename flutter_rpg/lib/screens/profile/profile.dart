@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rpg/models/character.dart';
+import 'package:flutter_rpg/screens/profile/heart.dart';
 import 'package:flutter_rpg/screens/profile/skill_list.dart';
 import 'package:flutter_rpg/screens/profile/stats_table.dart';
 import 'package:flutter_rpg/services/character_store.dart';
@@ -22,27 +23,36 @@ class Profile extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // basic info - image, voc, desc
-            Container(
-              padding: const EdgeInsets.all(16),
-              color: AppColors.secondaryColor.withAlpha(88),
-              child: Row(
-                children: [
-                  Hero(
-                    tag: character.id.toString(),
-                    child: Image.asset('assets/img/vocations/${character.vocation.image}', width: 140, height: 140)
+            Stack(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  color: AppColors.secondaryColor.withAlpha(88),
+                  child: Row(
+                    children: [
+                      Hero(
+                        tag: character.id.toString(),
+                        child: Image.asset('assets/img/vocations/${character.vocation.image}', width: 140, height: 140)
+                      ),
+                      const SizedBox(width: 20,),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            StyledHeading(character.vocation.title),
+                            StyledText(character.vocation.description)
+                          ]
+                        ),
+                      ),
+                    ]
                   ),
-                  const SizedBox(width: 20,),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        StyledHeading(character.vocation.title),
-                        StyledText(character.vocation.description)
-                      ]
-                    ),
-                  ),
-                ]
-              ),
+                ),
+                Positioned(
+                  right: 15,
+                  top: 15,
+                  child: Heart(character: character),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Center(child: Icon(Icons.code, color: AppColors.primaryColor)),
@@ -70,6 +80,7 @@ class Profile extends StatelessWidget {
                     const SizedBox(height: 10,),
                 ],)
               )),
+
         
             // stats & skills
             Container(
