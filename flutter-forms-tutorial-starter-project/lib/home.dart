@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final TextEditingController _emailController = TextEditingController();
+  final _formGlobalKey = GlobalKey<FormState>();
 
   final List<Todo> todos = [
     const Todo(
@@ -45,19 +45,51 @@ class _HomeState extends State<Home> {
             Expanded(child: TodoList(todos: todos)),
         
             // form stuff below here
-            TextField(
-              controller: _emailController,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                label: Text('Email Address'),
-              ),
-              keyboardType: TextInputType.emailAddress,
-            ),
+            Form(
+              key: _formGlobalKey,
+              child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
 
-            const SizedBox(height: 20,),
-            FilledButton(onPressed: () {
-              print(_emailController.text.trim());
-            }, child: const Text('Print the email')),
+                //todo  title
+                TextFormField(
+                  maxLength: 20,
+                  decoration: const InputDecoration(label: Text('Todo Title')),
+                  validator: (value) {
+                    if(value == null || value.isEmpty) {
+                      return 'You must enter a value for the title.';
+                    }
+                    return null;
+                  },
+                ),
+                //todo description
+                TextFormField(
+                  maxLength: 40,
+                  decoration: const InputDecoration(label: Text('Todo Description')),
+                  validator: (value) {
+                    if(value == null || value.length < 5) {
+                      return 'Descirption must be at least 5 characters long';
+                    }
+                    return null;
+                  },
+                ),
+                
+                //todo priority
+                
+                //todo submit
+                const SizedBox(height: 20),
+                FilledButton(
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Colors.grey[800], 
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))
+                  ),
+                  onPressed: () {
+                    _formGlobalKey.currentState!.validate();
+                  }, 
+                  child: const Text('Add'))
+              ],
+            ),
+          ),
             
           ],
         ),
