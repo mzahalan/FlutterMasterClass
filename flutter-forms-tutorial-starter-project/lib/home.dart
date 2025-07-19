@@ -11,6 +11,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final _formGlobalKey = GlobalKey<FormState>();
+  static const _defaultPriority = Priority.low;
+  
+  String _title = '';
+  String _description = '';
+  Priority _selectedPriority = _defaultPriority;
 
   final List<Todo> todos = [
     const Todo(
@@ -61,7 +66,11 @@ class _HomeState extends State<Home> {
                     }
                     return null;
                   },
+                  onSaved: (newValue) {
+                    _title = newValue!;
+                  },
                 ),
+
                 //todo description
                 TextFormField(
                   maxLength: 40,
@@ -72,9 +81,24 @@ class _HomeState extends State<Home> {
                     }
                     return null;
                   },
+                  onSaved: (newValue) {
+                    _description = newValue!;
+                  },
                 ),
                 
                 //todo priority
+                DropdownButtonFormField(
+                  value: _selectedPriority,
+                  decoration: const InputDecoration(label: Text('Priority')),
+                  items: Priority.values.map((p) => DropdownMenuItem(
+                    value: p,
+                    child: Text(p.title))).toList(), 
+                  onChanged:(value) {
+                    setState(() {
+                      _selectedPriority = value!;
+                    });
+                  },
+                ),
                 
                 //todo submit
                 const SizedBox(height: 20),
@@ -84,7 +108,16 @@ class _HomeState extends State<Home> {
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))
                   ),
                   onPressed: () {
-                    _formGlobalKey.currentState!.validate();
+                    if(_formGlobalKey.currentState!.validate()) {
+                      _formGlobalKey.currentState!.save();
+                      setState(() {
+                        todos.add(Todo(title: _title, description: _description, priority: _selectedPriority));                        
+                      });
+                      _formGlobalKey.currentState!.reset();
+                      setState(() {
+                        _selectedPriority = _defaultPriority;
+                      });
+                    }
                   }, 
                   child: const Text('Add'))
               ],
