@@ -6,7 +6,6 @@ part 'cart_notifier.g.dart';
 
 @riverpod
 class CartNotifier extends _$CartNotifier {
-
   // Initial Value
   @override
   Set<Product> build() {
@@ -26,5 +25,11 @@ class CartNotifier extends _$CartNotifier {
       state = {...state}..remove(product);
     }
   }
-
 }
+
+@riverpod
+int cartTotal(ref) {
+  final cart = ref.watch(cartNotifierProvider);
+  return cart.fold(0, (total, product) => total + product.price);
+}
+
