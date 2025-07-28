@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_tut/models/app_user.dart';
+import 'package:flutter_auth_tut/services/auth_service.dart';
 import 'package:flutter_auth_tut/shared/styled_button.dart';
 import 'package:flutter_auth_tut/shared/styled_text.dart';
 
@@ -13,6 +15,8 @@ class _SignInFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  String? _errorFeedback;
 
   bool _obscureText = true;
 
@@ -76,14 +80,32 @@ class _SignInFormState extends State<SignInForm> {
             const SizedBox(height: 16),
 
             // Error Feedback
+            if (_errorFeedback != null)
+              Center(
+                child: Text(_errorFeedback!, 
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
 
             // Submit Button
             StyledButton(
               onPressed: () async {
                 if (_formKey.currentState!.validate()) {
-                  final email = _emailController.text;
-                  final password = _passwordController.text;
-                  print('Email: $email, Password: $password');
+                  setState(() {
+                    _errorFeedback = null;
+                  });
+
+                  final String email = _emailController.text;
+                  final String password = _passwordController.text;
+                  final AppUser? user = await AuthService.signIn(email, password);
+
+                  if(user == null) {
+                    setState(() {
+                      _errorFeedback = 'Invalid Username or Password';
+                    });
+                  } else {
+                    print('Signed in successfully');
+                  }
                 }
               }, 
               child: const StyledButtonText('Sign In')
