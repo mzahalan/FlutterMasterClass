@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth_tut/models/app_user.dart';
 import 'package:flutter_auth_tut/services/auth_service.dart';
 import 'package:flutter_auth_tut/shared/styled_button.dart';
 import 'package:flutter_auth_tut/shared/styled_text.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  final AppUser user;
+
+  const ProfileScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,8 @@ class ProfileScreen extends StatelessWidget {
             ),*/
             const SizedBox(height: 16),
             // Output User Email
+            StyledBodyText('Welcome to your profile, ${user.email}'),
+            const SizedBox(height: 16),
             StyledButton(onPressed: (){
               AuthService.signOut();
             }, child: const StyledButtonText('Log Out')),
